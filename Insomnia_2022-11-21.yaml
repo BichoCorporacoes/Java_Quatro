@@ -1,0 +1,1037 @@
+_type: export
+__export_format: 4
+__export_date: 2022-11-26T23:20:05.576Z
+__export_source: insomnia.desktop.app:v2022.6.0
+resources:
+  - _id: req_37182aa57eb64612a61fa301791c0283
+    parentId: fld_2e82f7e88ed34989bcc3fd84aca7a664
+    modified: 1669504788894
+    created: 1669244985720
+    url: "{{ _.usuario }}registro-credencial/1"
+    name: Adicionar Credencial
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nomeUsuario": "string",
+          "senha": "string"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669244985720
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_2e82f7e88ed34989bcc3fd84aca7a664
+    parentId: fld_b22958d26198470399fec0aeab45aa2e
+    modified: 1669244984192
+    created: 1669244984192
+    name: Credencial
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1669244984192
+    _type: request_group
+  - _id: fld_b22958d26198470399fec0aeab45aa2e
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1669427218031
+    created: 1668901800461
+    name: Usuario
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1668988575132
+    _type: request_group
+  - _id: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    parentId: null
+    modified: 1669067855873
+    created: 1668895090222
+    name: Atividade-3
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_e8437b9436b347f1a1eee4af5341f94b
+    parentId: fld_b22958d26198470399fec0aeab45aa2e
+    modified: 1669500365140
+    created: 1668904056713
+    url: "{{ _.usuario }}usuarios/2"
+    name: Usuario
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1668905360348.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_78a2c9b4301d4369b667004c19bcdab4
+    parentId: fld_b22958d26198470399fec0aeab45aa2e
+    modified: 1669245485831
+    created: 1668901801963
+    url: "{{ _.usuario }}usuarios"
+    name: Usuarios
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: basic
+      useISO88591: false
+      disabled: false
+      username: user
+      password: b17a9973-f0b5-4b09-b3ee-9389746e61c7
+    metaSortKey: -1668905102384.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c068d16eef57462f9a060850cb18d446
+    parentId: fld_b22958d26198470399fec0aeab45aa2e
+    modified: 1669493458195
+    created: 1668904844420
+    url: "{{ _.usuario }}cadastro/1"
+    name: Cadastro
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >
+        {
+          "nome": "string",
+          "nomeSocial": "string",
+          "perfis": ["FORNECEDOR"],
+          "telefones": [
+            {
+              "ddd": "string",
+              "numero": "string"
+            }
+          ],
+          "endereco": {
+            "estado": "string",
+            "cidade": "string",
+            "bairro": "string",
+            "rua": "string",
+            "numero": "string",
+            "codigoPostal": "string",
+            "informacoesAdicionais": null
+          },
+          "documentos": [
+            {
+        			"dataEmissao": "2000-01-01",
+              "tipo": "CPF",
+              "numero": "string"
+            }
+          ],
+          "emails": [
+            {
+              "endereco": "string"
+            }
+          ],
+          "mercadorias": [
+            {
+        		"validade": "2022-11-25T23:19:55.202+00:00",
+        		"fabricao": "2022-11-25T23:19:55.202+00:00",
+        		"cadastro": "2022-11-25T23:19:55.202+00:00",
+        		"nome": "Roda de liga leva modelo toyota etios",
+        		"quantidade": 30,
+        		"valor": 300.0,
+        		"descricao": "Roda de liga leve original de fábrica da toyta para modelos do tipo hatch"
+            }
+          ],
+          "veiculos": [
+            {
+              "tipo": "HATCH",
+              "modelo": "string",
+              "placa": "string"
+            }
+          ]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: basic
+      useISO88591: false
+      disabled: false
+      username: user
+      password: b17a9973-f0b5-4b09-b3ee-9389746e61c7
+    metaSortKey: -1668904844420
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_63f1199a287c44c787a7ed6d7f196ee8
+    parentId: fld_b22958d26198470399fec0aeab45aa2e
+    modified: 1669489658491
+    created: 1668918427196
+    url: "{{ _.usuario }}atualizar/1"
+    name: Atualizar
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 1,
+        	"nome": "22 Alcântara de Bragança e Bourbon",
+        	"nomeSocial": "Dom Pedro",
+        		"documentos": [
+        		{
+        			"id": 1,
+        			"tipo": "CNPJ",
+        			"numero": "5646545645"
+        		}
+        	],
+        	"emails": [
+        		{
+        			"id": 1,
+        			"endereco": "aaaaa@a.com"
+        		}
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1668903322440.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_620e23d25d6e464b81619ccfe9698861
+    parentId: fld_9fd94ba7280b4e3fb3b30ec5b9f35cc7
+    modified: 1668988623597
+    created: 1668987909647
+    url: "{{ _.veiculo }}veiculos/1"
+    name: Veiculo
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1668987909647
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_9fd94ba7280b4e3fb3b30ec5b9f35cc7
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1669427212419
+    created: 1668987316745
+    name: Veiculos
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1668988575082
+    _type: request_group
+  - _id: req_9a85b5d54ffa4428a463c8672e1878d8
+    parentId: fld_9fd94ba7280b4e3fb3b30ec5b9f35cc7
+    modified: 1668987905790
+    created: 1668987337155
+    url: "{{ _.veiculo }}veiculos"
+    name: Veiculos
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1668987337155
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cce7c08a2eae427bbd9bafbeb0c964fe
+    parentId: fld_9fd94ba7280b4e3fb3b30ec5b9f35cc7
+    modified: 1669501043035
+    created: 1669245750660
+    url: "{{ _.veiculo }}cadastro/3"
+    name: Postar
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"tipo": "SUV",
+        	"modelo": "corolla-cross",
+        	"placa": "1111-0000"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1668985674496.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f09de9e72f694aecbabfd4f2b29d3226
+    parentId: fld_9fd94ba7280b4e3fb3b30ec5b9f35cc7
+    modified: 1669425661383
+    created: 1669245761766
+    url: "{{ _.veiculo }}deletar/1"
+    name: Deletar
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1668984843167.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_dc4648b8af444013a8f41bf033b59d3c
+    parentId: fld_9fd94ba7280b4e3fb3b30ec5b9f35cc7
+    modified: 1669500209077
+    created: 1669245772401
+    url: "{{ _.veiculo }}atualizar/1"
+    name: Atualizar
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"tipo": "SUV",
+        	"modelo": "corolla-cross",
+        	"placa": "1231232131-0000"
+        }	
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1668984427502.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_45c279d0cb1748ed96c0d9b0f76281fb
+    parentId: fld_76f0c3fde79e479b9f09e28c61218b48
+    modified: 1669411971493
+    created: 1669245415322
+    url: "{{ _.mercadorias }}mercadorias/1"
+    name: Mercadoria
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669244547891
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_76f0c3fde79e479b9f09e28c61218b48
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1668988574982
+    created: 1668988574982
+    name: Mercadoria
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1668988574982
+    _type: request_group
+  - _id: req_43e6c9d1f3b84ff1abd062a8dfdfc14b
+    parentId: fld_76f0c3fde79e479b9f09e28c61218b48
+    modified: 1669245451329
+    created: 1668988576225
+    url: "{{ _.mercadorias }}mercadorias"
+    name: Mercadorias
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669244547866
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a209c6bef48b4b278a96e048c47ffb82
+    parentId: fld_76f0c3fde79e479b9f09e28c61218b48
+    modified: 1669487341403
+    created: 1669244547841
+    url: "{{ _.mercadorias }}cadastro/1"
+    name: Postar
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "validade": "1999-12-12",
+          "fabricao": "1999-12-12",
+          "cadastro": "1999-12-12",
+          "nome": "string",
+          "quantidade": 0,
+          "valor": 0,
+          "descricao": "string"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669244547841
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2808d069f5fd42c180be575e47ac529e
+    parentId: fld_76f0c3fde79e479b9f09e28c61218b48
+    modified: 1669418059008
+    created: 1669243782497
+    url: "{{ _.mercadorias }}deletar/1"
+    name: Deletar
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669244165144
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2852a5ad0e8149dc9643d9573e74d3b0
+    parentId: fld_76f0c3fde79e479b9f09e28c61218b48
+    modified: 1669417629462
+    created: 1669244535062
+    url: "{{ _.mercadorias }}atualizar/1"
+    name: Atualizar
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "validade": "2000-12-12",
+          "fabricao": "2000-12-12",
+          "cadastro": "2000-12-12",
+          "nome": "2131232131",
+          "quantidade": 0,
+          "valor": 0,
+          "descricao": "string"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669243782447
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0d1b6feb8cf545dda1e0b95964041a92
+    parentId: fld_52859e30788742fb91df47bf189dab47
+    modified: 1669422768306
+    created: 1669245390454
+    url: "{{ _.vendas }}vendas/1"
+    name: Venda
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669245148727
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_52859e30788742fb91df47bf189dab47
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1668988343054
+    created: 1668988343054
+    name: vendas
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1668988343054
+    _type: request_group
+  - _id: req_30061956f2e14acbaecade729e6c7a1a
+    parentId: fld_52859e30788742fb91df47bf189dab47
+    modified: 1669421994478
+    created: 1668988344198
+    url: "{{ _.vendas }}vendas"
+    name: Vendas
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669245148702
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d5518bd25f964d2d942a41e8d430317b
+    parentId: fld_52859e30788742fb91df47bf189dab47
+    modified: 1669504592184
+    created: 1669245103736
+    url: "{{ _.vendas }}cadastro/1"
+    name: Postar
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: "{
+
+        \  \"cadastro\": \"2000-01-01\",
+
+        \  \"identificacao\": \"122\",
+
+        \  \"cliente\": {
+
+        \    \"id\": 3
+
+        \  },
+
+        \  \"funcionario\": {
+
+        \    \"id\": 2
+
+        \  },
+
+        \  \"mercadorias\": [
+
+        \    {
+
+        \t\t\"validade\": \"1999-12-12\",
+
+        \t\t\"fabricao\": \"1999-12-12\",
+
+        \t\t\"cadastro\": \"1999-12-12\",
+
+        \t\t\"nome\": \"33121\",
+
+        \t\t\"quantidade\": 0,
+
+        \t\t\"valor\": 0,
+
+        \t\t\"descricao\": \"21321321\"
+
+        \    }
+
+        \  ],
+
+        \  \"servicos\": [
+
+        \    {
+
+        \t\t\"nome\": \"Alinhamento 131 rodas\",
+
+        \t\t\"valor\": 50.0,
+
+        \t\t\"descricao\": \"Alinhamento das rodas do carro\"
+
+        \    }
+
+        \  ],
+
+        \  \"veiculo\": {
+
+        \    \"id\": 1
+
+        \  }
+
+        }
+
+        \t"
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669245148689.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6bc5a9c68eb54b6c8d70b4b720e0066a
+    parentId: fld_52859e30788742fb91df47bf189dab47
+    modified: 1669421970576
+    created: 1669245148677
+    url: "{{ _.vendas }}deletar/1"
+    name: Deletar
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669245148677
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5ea5744c93aa420bbf9d59c6d6f72091
+    parentId: fld_52859e30788742fb91df47bf189dab47
+    modified: 1669427228569
+    created: 1669245131192
+    url: "{{ _.vendas }}atualizar/1"
+    name: Atualizar
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"identificacao": "122"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669245131192
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_faba55083f584e74ac6ca1e9dbbb56ab
+    parentId: fld_cacc5af3b4304776b383e13f54ed3c0e
+    modified: 1669253882932
+    created: 1669245465364
+    url: "{{ _.servico }}servicos/2"
+    name: Serviço
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669245568633
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_cacc5af3b4304776b383e13f54ed3c0e
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1668988284168
+    created: 1668988284168
+    name: serviço
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1668988284168
+    _type: request_group
+  - _id: req_d9a2981f2a424c3c896333be0301b6eb
+    parentId: fld_cacc5af3b4304776b383e13f54ed3c0e
+    modified: 1669245605792
+    created: 1668988285320
+    url: "{{ _.servico }}servicos"
+    name: Serviços
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669245568608
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_328a2195cbfe4f4a991b5ab15a7dba12
+    parentId: fld_cacc5af3b4304776b383e13f54ed3c0e
+    modified: 1669490158634
+    created: 1669245565038
+    url: "{{ _.servico }}cadastro/1"
+    name: Postar
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"nome": "Troca de rodas",
+        		"valor": 50.0,
+        		"descricao": "Troca das rodas do carro por novas"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669245568595.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e88f3d7fd9474e4fa08b414d2ff26477
+    parentId: fld_cacc5af3b4304776b383e13f54ed3c0e
+    modified: 1669490546103
+    created: 1669245568583
+    url: "{{ _.servico }}deletar/1"
+    name: Deletar
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1669245568583
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1ca19582f1d546c0bc346fc5a1e15278
+    parentId: fld_cacc5af3b4304776b383e13f54ed3c0e
+    modified: 1669490225815
+    created: 1669245567509
+    url: "{{ _.servico }}atualizar/3"
+    name: Atualizar
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"nome": "12122121 de rodas",
+        		"valor": 50.0,
+        		"descricao": "Troca das rodas do carro por novas"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669245567509
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_66140b7ffc8c42ed94c36e07fabe33b5
+    parentId: fld_b21496b4cd7a45ffa3f83982d3cc0a5d
+    modified: 1669491017622
+    created: 1669245623189
+    url: "{{ _.empresa }}empresas/1"
+    name: Empresa
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1668988091782
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_b21496b4cd7a45ffa3f83982d3cc0a5d
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1668988090657
+    created: 1668988090657
+    name: Empresa
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1668988090657
+    _type: request_group
+  - _id: req_df4d70e039294b2fa50d181cd944869f
+    parentId: fld_b21496b4cd7a45ffa3f83982d3cc0a5d
+    modified: 1668988619350
+    created: 1668988091732
+    url: "{{ _.empresa }}empresas"
+    name: Empresas
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1668988091732
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d103023c25f04fa0819a7c32eaa04449
+    parentId: fld_b21496b4cd7a45ffa3f83982d3cc0a5d
+    modified: 1669504769435
+    created: 1669245637032
+    url: "{{ _.empresa }}cadastro"
+    name: Postar
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "razaoSocial": "KKKKKKKKKKKKK service toyota ltda",
+          "nomeFantasia": "KKKKKKKKKKK service manutenção veicular",
+          "endereco": {
+            "estado": "SãSo Paulo",
+            "cidade": "Sãso Paulo",
+            "bairro": "Censtro",
+            "rua": "Av. São sJoão",
+            "numero": "0s0",
+            "codigoPostal": "01s035-000",
+            "informacoesAdicionais": null
+          },
+          "telefones": [
+            {
+              "ddd": "a123",
+              "numero": "986454527"
+            }
+          ]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1668988046210.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ac1cf8463e664436bdb89decbbce8155
+    parentId: fld_b21496b4cd7a45ffa3f83982d3cc0a5d
+    modified: 1669421850187
+    created: 1669245671848
+    url: "{{ _.empresa }}deletar/1"
+    name: Deletar
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1668988023450.125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_348d6400de9a49728b077452a257431e
+    parentId: fld_b21496b4cd7a45ffa3f83982d3cc0a5d
+    modified: 1669504769892
+    created: 1669245630482
+    url: "{{ _.empresa }}atualizar/1"
+    name: Atualizar
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "razaoSocial": "KKKKKKKKKKKKK service toyota ltda",
+          "nomeFantasia": "KKKKKKKKKKK service manutenção veicular",
+          "endereco": {
+            "estado": "SãSo Paulo",
+            "cidade": "Sãso Paulo",
+            "bairro": "Censtro",
+            "rua": "Av. São sJoão",
+            "numero": "0s0",
+            "codigoPostal": "01s035-000",
+            "informacoesAdicionais": null
+          },
+          "telefones": [
+            {
+        			"id": 1,
+              "ddd": "a123",
+              "numero": "986454527"
+            }
+          ]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1668988000689.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_d6772f913d1f305f6cb1a97c65f01bbf9599c315
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1669252614148
+    created: 1668895090233
+    name: Base Environment
+    data:
+      usuario: http://localhost:8080/usuario/
+      veiculo: http://localhost:8080/veiculo/
+      empresa: http://localhost:8080/empresa/
+      servico: http://localhost:8080/servico/
+      vendas: http://localhost:8080/venda/
+      mercadorias: http://localhost:8080/mercadoria/
+    dataPropertyOrder:
+      "&":
+        - usuario
+        - veiculo
+        - empresa
+        - servico
+        - vendas
+        - mercadorias
+    color: null
+    isPrivate: false
+    metaSortKey: 1668895090233
+    _type: environment
+  - _id: jar_d6772f913d1f305f6cb1a97c65f01bbf9599c315
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1668905036133
+    created: 1668895090237
+    name: Default Jar
+    cookies:
+      - key: JSESSIONID
+        value: BAFEDBAD06EAE898AB9C837FFF050E06
+        domain: localhost
+        path: /
+        httpOnly: true
+        hostOnly: true
+        creation: 2022-11-20T00:11:13.985Z
+        lastAccessed: 2022-11-20T00:43:56.132Z
+        id: "18369224644131465"
+    _type: cookie_jar
+  - _id: spc_d696f035fc274d59af0c5f8a687ac2dc
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1668895090224
+    created: 1668895090224
+    fileName: Atividade-2
+    contents: ""
+    contentType: yaml
+    _type: api_spec
