@@ -1,11 +1,49 @@
 _type: export
 __export_format: 4
-__export_date: 2022-11-26T23:20:05.576Z
+__export_date: 2022-11-28T21:47:41.933Z
 __export_source: insomnia.desktop.app:v2022.6.0
 resources:
+  - _id: req_f5e6ffd7ad16412b96c33a66e32e6919
+    parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    modified: 1669662842126
+    created: 1669646501273
+    url: http://localhost:8080/login
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nomeUsuario": "dompedrofuncionario",
+        	"senha": "123"
+        }	
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_060c7a2484de4a768b1d1abaf3220d30
+    authentication: {}
+    metaSortKey: -1669646501274
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_f5fa593e5ab846f5a103203cd4d348d2
+    parentId: null
+    modified: 1669067855873
+    created: 1668895090222
+    name: Atividade-3
+    description: ""
+    scope: collection
+    _type: workspace
   - _id: req_37182aa57eb64612a61fa301791c0283
     parentId: fld_2e82f7e88ed34989bcc3fd84aca7a664
-    modified: 1669504788894
+    modified: 1669648191615
     created: 1669244985720
     url: "{{ _.usuario }}registro-credencial/1"
     name: Adicionar Credencial
@@ -15,8 +53,11 @@ resources:
       mimeType: application/json
       text: |-
         {
-          "nomeUsuario": "string",
-          "senha": "string"
+        	"criacao": "2022-11-27T17:14:28.412+00:00",
+        	"ultimoAcesso": "2022-11-27T17:14:28.412+00:00",
+        	"inativo": false,
+          "nomeUsuario": "123",
+          "senha": "123"
         }
     parameters: []
     headers:
@@ -52,17 +93,9 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1668988575132
     _type: request_group
-  - _id: wrk_f5fa593e5ab846f5a103203cd4d348d2
-    parentId: null
-    modified: 1669067855873
-    created: 1668895090222
-    name: Atividade-3
-    description: ""
-    scope: collection
-    _type: workspace
   - _id: req_e8437b9436b347f1a1eee4af5341f94b
     parentId: fld_b22958d26198470399fec0aeab45aa2e
-    modified: 1669500365140
+    modified: 1669670667588
     created: 1668904056713
     url: "{{ _.usuario }}usuarios/2"
     name: Usuario
@@ -71,7 +104,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjcwNjYyfQ.o7j8odwy6T__gUBThh6uhQj1lI0_YXhiLHcWgG3dkJU
     metaSortKey: -1668905360348.5
     isPrivate: false
     settingStoreCookies: true
@@ -83,7 +118,7 @@ resources:
     _type: request
   - _id: req_78a2c9b4301d4369b667004c19bcdab4
     parentId: fld_b22958d26198470399fec0aeab45aa2e
-    modified: 1669245485831
+    modified: 1669670673679
     created: 1668901801963
     url: "{{ _.usuario }}usuarios"
     name: Usuarios
@@ -93,11 +128,8 @@ resources:
     parameters: []
     headers: []
     authentication:
-      type: basic
-      useISO88591: false
-      disabled: false
-      username: user
-      password: b17a9973-f0b5-4b09-b3ee-9389746e61c7
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjcwNjYyfQ.o7j8odwy6T__gUBThh6uhQj1lI0_YXhiLHcWgG3dkJU
     metaSortKey: -1668905102384.25
     isPrivate: false
     settingStoreCookies: true
@@ -109,7 +141,7 @@ resources:
     _type: request
   - _id: req_c068d16eef57462f9a060850cb18d446
     parentId: fld_b22958d26198470399fec0aeab45aa2e
-    modified: 1669493458195
+    modified: 1669672007658
     created: 1668904844420
     url: "{{ _.usuario }}cadastro/1"
     name: Cadastro
@@ -121,6 +153,7 @@ resources:
         {
           "nome": "string",
           "nomeSocial": "string",
+        	"nivelDeAcesso": ["ROLE_ADMIN"],
           "perfis": ["FORNECEDOR"],
           "telefones": [
             {
@@ -187,9 +220,32 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_a8fe52ace1fc483bb57004eca98085b1
+    parentId: fld_b22958d26198470399fec0aeab45aa2e
+    modified: 1669664933880
+    created: 1669660378832
+    url: "{{ _.usuario }}deletar/2"
+    name: Deletar
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjY0MjczfQ.5qQlZ4NLc0eV7eamC5ojqgsMSIHDKRyXo5WU7Qrrp9k
+    metaSortKey: -1668904654172.5625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_63f1199a287c44c787a7ed6d7f196ee8
     parentId: fld_b22958d26198470399fec0aeab45aa2e
-    modified: 1669489658491
+    modified: 1669660391519
     created: 1668918427196
     url: "{{ _.usuario }}atualizar/1"
     name: Atualizar
@@ -221,7 +277,7 @@ resources:
       - name: Content-Type
         value: application/json
     authentication: {}
-    metaSortKey: -1668903322440.5
+    metaSortKey: -1668904463925.125
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -232,7 +288,7 @@ resources:
     _type: request
   - _id: req_620e23d25d6e464b81619ccfe9698861
     parentId: fld_9fd94ba7280b4e3fb3b30ec5b9f35cc7
-    modified: 1668988623597
+    modified: 1669670682028
     created: 1668987909647
     url: "{{ _.veiculo }}veiculos/1"
     name: Veiculo
@@ -241,7 +297,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjcwNjYyfQ.o7j8odwy6T__gUBThh6uhQj1lI0_YXhiLHcWgG3dkJU
     metaSortKey: -1668987909647
     isPrivate: false
     settingStoreCookies: true
@@ -263,7 +321,7 @@ resources:
     _type: request_group
   - _id: req_9a85b5d54ffa4428a463c8672e1878d8
     parentId: fld_9fd94ba7280b4e3fb3b30ec5b9f35cc7
-    modified: 1668987905790
+    modified: 1669664534348
     created: 1668987337155
     url: "{{ _.veiculo }}veiculos"
     name: Veiculos
@@ -272,7 +330,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjY0MjczfQ.5qQlZ4NLc0eV7eamC5ojqgsMSIHDKRyXo5WU7Qrrp9k
     metaSortKey: -1668987337155
     isPrivate: false
     settingStoreCookies: true
@@ -365,7 +425,7 @@ resources:
     _type: request
   - _id: req_45c279d0cb1748ed96c0d9b0f76281fb
     parentId: fld_76f0c3fde79e479b9f09e28c61218b48
-    modified: 1669411971493
+    modified: 1669668575444
     created: 1669245415322
     url: "{{ _.mercadorias }}mercadorias/1"
     name: Mercadoria
@@ -374,7 +434,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjY4NTY3fQ.l_htBsXylPiOzXEp0RwumpO-8XQjQs6EsT9t5B45ai4
     metaSortKey: -1669244547891
     isPrivate: false
     settingStoreCookies: true
@@ -396,7 +458,7 @@ resources:
     _type: request_group
   - _id: req_43e6c9d1f3b84ff1abd062a8dfdfc14b
     parentId: fld_76f0c3fde79e479b9f09e28c61218b48
-    modified: 1669245451329
+    modified: 1669668587913
     created: 1668988576225
     url: "{{ _.mercadorias }}mercadorias"
     name: Mercadorias
@@ -405,7 +467,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjY4NTY3fQ.l_htBsXylPiOzXEp0RwumpO-8XQjQs6EsT9t5B45ai4
     metaSortKey: -1669244547866
     isPrivate: false
     settingStoreCookies: true
@@ -506,7 +570,7 @@ resources:
     _type: request
   - _id: req_0d1b6feb8cf545dda1e0b95964041a92
     parentId: fld_52859e30788742fb91df47bf189dab47
-    modified: 1669422768306
+    modified: 1669670701576
     created: 1669245390454
     url: "{{ _.vendas }}vendas/1"
     name: Venda
@@ -515,7 +579,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjcwNjYyfQ.o7j8odwy6T__gUBThh6uhQj1lI0_YXhiLHcWgG3dkJU
     metaSortKey: -1669245148727
     isPrivate: false
     settingStoreCookies: true
@@ -537,7 +603,7 @@ resources:
     _type: request_group
   - _id: req_30061956f2e14acbaecade729e6c7a1a
     parentId: fld_52859e30788742fb91df47bf189dab47
-    modified: 1669421994478
+    modified: 1669670713388
     created: 1668988344198
     url: "{{ _.vendas }}vendas"
     name: Vendas
@@ -546,7 +612,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjcwNjYyfQ.o7j8odwy6T__gUBThh6uhQj1lI0_YXhiLHcWgG3dkJU
     metaSortKey: -1669245148702
     isPrivate: false
     settingStoreCookies: true
@@ -558,7 +626,7 @@ resources:
     _type: request
   - _id: req_d5518bd25f964d2d942a41e8d430317b
     parentId: fld_52859e30788742fb91df47bf189dab47
-    modified: 1669504592184
+    modified: 1669662572361
     created: 1669245103736
     url: "{{ _.vendas }}cadastro/1"
     name: Postar
@@ -645,7 +713,7 @@ resources:
     _type: request
   - _id: req_6bc5a9c68eb54b6c8d70b4b720e0066a
     parentId: fld_52859e30788742fb91df47bf189dab47
-    modified: 1669421970576
+    modified: 1669662630787
     created: 1669245148677
     url: "{{ _.vendas }}deletar/1"
     name: Deletar
@@ -654,7 +722,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxNjY5NjYyNzMwfQ.b78jLXnUEtEAzzV_npZzTgNpFeYiK9QgQkVWVWywUH8
     metaSortKey: -1669245148677
     isPrivate: false
     settingStoreCookies: true
@@ -694,7 +764,7 @@ resources:
     _type: request
   - _id: req_faba55083f584e74ac6ca1e9dbbb56ab
     parentId: fld_cacc5af3b4304776b383e13f54ed3c0e
-    modified: 1669253882932
+    modified: 1669670730551
     created: 1669245465364
     url: "{{ _.servico }}servicos/2"
     name: Serviço
@@ -703,7 +773,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjcwNjYyfQ.o7j8odwy6T__gUBThh6uhQj1lI0_YXhiLHcWgG3dkJU
     metaSortKey: -1669245568633
     isPrivate: false
     settingStoreCookies: true
@@ -725,7 +797,7 @@ resources:
     _type: request_group
   - _id: req_d9a2981f2a424c3c896333be0301b6eb
     parentId: fld_cacc5af3b4304776b383e13f54ed3c0e
-    modified: 1669245605792
+    modified: 1669670737522
     created: 1668988285320
     url: "{{ _.servico }}servicos"
     name: Serviços
@@ -734,7 +806,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjcwNjYyfQ.o7j8odwy6T__gUBThh6uhQj1lI0_YXhiLHcWgG3dkJU
     metaSortKey: -1669245568608
     isPrivate: false
     settingStoreCookies: true
@@ -827,7 +901,7 @@ resources:
     _type: request
   - _id: req_66140b7ffc8c42ed94c36e07fabe33b5
     parentId: fld_b21496b4cd7a45ffa3f83982d3cc0a5d
-    modified: 1669491017622
+    modified: 1669669819685
     created: 1669245623189
     url: "{{ _.empresa }}empresas/1"
     name: Empresa
@@ -836,7 +910,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxOTY5NjY5NTE0fQ.0urXfd_1ESo08E1S-bqRlCzbThz2s1Nl7mA1uz5gIyY
     metaSortKey: -1668988091782
     isPrivate: false
     settingStoreCookies: true
@@ -858,7 +934,7 @@ resources:
     _type: request_group
   - _id: req_df4d70e039294b2fa50d181cd944869f
     parentId: fld_b21496b4cd7a45ffa3f83982d3cc0a5d
-    modified: 1668988619350
+    modified: 1669669823169
     created: 1668988091732
     url: "{{ _.empresa }}empresas"
     name: Empresas
@@ -867,7 +943,9 @@ resources:
     body: {}
     parameters: []
     headers: []
-    authentication: {}
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb21wZWRyb2Z1bmNpb25hcmlvIiwiZXhwIjoxNjY5NjUwNjQ1fQ.Pzkq7RNHyeIKCEigL3_fWm4PfdbIuu2mvNxqKdHKT40
     metaSortKey: -1668988091732
     isPrivate: false
     settingStoreCookies: true
@@ -989,7 +1067,7 @@ resources:
     _type: request
   - _id: env_d6772f913d1f305f6cb1a97c65f01bbf9599c315
     parentId: wrk_f5fa593e5ab846f5a103203cd4d348d2
-    modified: 1669252614148
+    modified: 1669646751011
     created: 1668895090233
     name: Base Environment
     data:
