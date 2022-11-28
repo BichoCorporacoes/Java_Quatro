@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -35,17 +34,17 @@ public class configuracoes extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private JwtTokenService jwtTokenGerador;
 	
-	private static final String[] rotasPublicas = { "/**" };
+	private static final String[] rotasPublicas = { "/login", "/usuario/cadastro", "/**" };
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	
 		http.cors().and().csrf().disable();
 		
-		http.authorizeHttpRequests().antMatchers(rotasPublicas).hasAnyRole("ROLE_ADMIN");
+		http.authorizeHttpRequests().antMatchers(rotasPublicas).permitAll().anyRequest().authenticated();
 		
 		http.addFilter(new JwtTokenAuth(authenticationManager(), jwtTokenGerador));
-		http.addFilter(new JwtTokenFilter(authenticationManager(), jwtTokenGerador, (UserDetailsServiceImpl) servico));
+		http.addFilter(new JwtTokenFilter(authenticationManager(), jwtTokenGerador, servico));
 		
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}

@@ -6,6 +6,7 @@ import com.autobots.automanager.entitades.Empresa;
 import com.autobots.automanager.entitades.Mercadoria;
 import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.hateos.MercadoriaHateos;
 import com.autobots.automanager.servicos.EmpresaServico;
 import com.autobots.automanager.servicos.MercadoriaServico;
 import com.autobots.automanager.servicos.UsuarioServico;
@@ -14,6 +15,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +41,9 @@ public class MercadoriaControle {
   @Autowired
   private VendaServico servicoVenda;
   
-
+  @Autowired
+  private MercadoriaHateos hateos;
+  
   @Autowired
   private MercadoriaSelecionador selecionadora;
 
@@ -49,6 +53,7 @@ public class MercadoriaControle {
   @Autowired
   private MercadoriaSelecionador selecionador;
 
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')")
   @GetMapping("/mercadorias")
   public ResponseEntity<List<Mercadoria>> pegarTodos() {
     List<Mercadoria> todos = servico.pegarTodos();
@@ -58,6 +63,7 @@ public class MercadoriaControle {
       return new ResponseEntity<List<Mercadoria>>(status);
     } else {
       status = HttpStatus.FOUND;
+      hateos.adicionarLink(todos);
       ResponseEntity<List<Mercadoria>> resposta = new ResponseEntity<List<Mercadoria>>(
         todos,
         status
@@ -65,7 +71,7 @@ public class MercadoriaControle {
       return resposta;
     }
   }
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')")
   @GetMapping("/mercadorias/{id}")
   public ResponseEntity<Mercadoria> pegarMercadoriaEspecifica(
     @PathVariable Long id
@@ -75,10 +81,11 @@ public class MercadoriaControle {
     if (select == null) {
       return new ResponseEntity<Mercadoria>(HttpStatus.NOT_FOUND);
     } else {
+    	hateos.adicionarLink(select);
       return new ResponseEntity<Mercadoria>(select, HttpStatus.FOUND);
     }
   }
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')")
   @PutMapping("/atualizar/{id}")
   public ResponseEntity<?> atualizarMercadoria(
     @PathVariable Long id,
@@ -95,7 +102,7 @@ public class MercadoriaControle {
     }
     return new ResponseEntity<>(status);
   }
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')")
   @PostMapping("/cadastro/{idCliente}")
   public ResponseEntity<?> cadastroMercadorias(
     @RequestBody Mercadoria cadastro,
@@ -125,7 +132,7 @@ public class MercadoriaControle {
       );
     }
   }
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')")
   @DeleteMapping("/deletar/{idMercadoria}")
   public ResponseEntity<?> deletarMercadoria(@PathVariable Long idMercadoria) {
     List<Mercadoria> mercadorias = servico.pegarTodos();

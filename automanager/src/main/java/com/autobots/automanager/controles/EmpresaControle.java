@@ -2,13 +2,14 @@ package com.autobots.automanager.controles;
 
 import com.autobots.automanager.componentes.EmpresaSelecionadora;
 import com.autobots.automanager.entitades.Empresa;
-import com.autobots.automanager.entitades.Endereco;
+import com.autobots.automanager.hateos.EmpresaHateos;
 import com.autobots.automanager.servicos.EmpresaServico;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,11 @@ public class EmpresaControle {
 
   @Autowired
   private EmpresaSelecionadora selecionador;
+  
+  @Autowired
+  private EmpresaHateos hateos;
 
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @GetMapping("/empresas")
   public ResponseEntity<List<Empresa>> pegarTodos() {
     List<Empresa> todos = empresaServico.pegarTodas();
@@ -37,6 +42,7 @@ public class EmpresaControle {
       return new ResponseEntity<List<Empresa>>(status);
     } else {
       status = HttpStatus.FOUND;
+      hateos.adicionarLink(todos);
       ResponseEntity<List<Empresa>> resposta = new ResponseEntity<List<Empresa>>(
         todos,
         status
@@ -44,18 +50,21 @@ public class EmpresaControle {
       return resposta;
     }
   }
-
+  
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @GetMapping("/empresas/{id}")
-  public ResponseEntity<Empresa> pegarUsuarioEspecifico(@PathVariable Long id) {
+  public ResponseEntity<Empresa> pegarEmpresaEspecifica(@PathVariable Long id) {
     List<Empresa> todasEmpresas = empresaServico.pegarTodas();
     Empresa select = selecionador.selecionar(todasEmpresas, id);
     if (select == null) {
       return new ResponseEntity<Empresa>(HttpStatus.NOT_FOUND);
     } else {
+    	hateos.adicionarLink(select);
       return new ResponseEntity<Empresa>(select, HttpStatus.FOUND);
     }
   }
-
+  
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @PostMapping("/cadastro")
   public ResponseEntity<?> cadastrarEmpresa(@RequestBody Empresa body) {
     body.setCadastro(new Date());
@@ -66,11 +75,19 @@ public class EmpresaControle {
     );
   }
 
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @DeleteMapping("/deletar/{idEmpresa}")
-  public void deletarEmpresa(@PathVariable Long idEmpresa) {
-    empresaServico.deletar(idEmpresa);
+  public ResponseEntity<?> deletarEmpresa(@PathVariable Long idEmpresa) {
+	  List<Empresa> empresas = empresaServico.pegarTodas();
+	  Empresa empresa = selecionador.selecionar(empresas, idEmpresa);
+	  if(empresa != null) {
+		  empresaServico.deletar(idEmpresa);
+		  return new ResponseEntity<>("Deletado com suecsso", HttpStatus.ACCEPTED);
+	  }
+	  return new ResponseEntity<>("Não encontrada", HttpStatus.NOT_FOUND);
   }
 
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @PutMapping("/atualizar/{id}")
   public ResponseEntity<?> atualizarUsuario(
     @PathVariable Long id,

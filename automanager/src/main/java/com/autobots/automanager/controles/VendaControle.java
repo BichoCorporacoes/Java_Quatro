@@ -8,6 +8,7 @@ import com.autobots.automanager.entitades.Servico;
 import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.entitades.Veiculo;
 import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.hateos.VendaHateos;
 import com.autobots.automanager.servicos.EmpresaServico;
 import com.autobots.automanager.servicos.UsuarioServico;
 import com.autobots.automanager.servicos.VeiculoServico;
@@ -16,6 +17,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +39,9 @@ public class VendaControle {
 
   @Autowired
   private UsuarioServico servicoUsuario;
+  
+  @Autowired
+  private VendaHateos hateos;
 
   @Autowired
   private VeiculoServico servicoVeiculo;
@@ -46,7 +51,7 @@ public class VendaControle {
 
   @Autowired
   private EmpresaSelecionadora selecionadorEmpresa;
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')")
   @GetMapping("/vendas")
   public ResponseEntity<List<Venda>> pegarTodos() {
     List<Venda> todos = servico.pegarTodos();
@@ -56,6 +61,7 @@ public class VendaControle {
       return new ResponseEntity<List<Venda>>(status);
     } else {
       status = HttpStatus.FOUND;
+      hateos.adicionarLink(todos);
       ResponseEntity<List<Venda>> resposta = new ResponseEntity<List<Venda>>(
         todos,
         status
@@ -63,7 +69,7 @@ public class VendaControle {
       return resposta;
     }
   }
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_VENDEDOR', 'ROLE_GERENTE')")
   @GetMapping("/vendas/{id}")
   public ResponseEntity<Venda> pegarUsuarioEspecifico(@PathVariable Long id) {
     List<Venda> todasEmpresas = servico.pegarTodos();
@@ -71,10 +77,11 @@ public class VendaControle {
     if (select == null) {
       return new ResponseEntity<Venda>(HttpStatus.NOT_FOUND);
     } else {
+    	hateos.adicionarLink(select);
       return new ResponseEntity<Venda>(select, HttpStatus.FOUND);
     }
   }
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_VENDEDOR', 'ROLE_GERENTE')")
   @PutMapping("/atualizar/{id}")
   public ResponseEntity<?> atualizarUsuario(
     @PathVariable Long id,
@@ -90,7 +97,7 @@ public class VendaControle {
     }
     return new ResponseEntity<>(status);
   }
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_VENDEDOR', 'ROLE_GERENTE')")
   @PostMapping("/cadastro/{idEmpresa}")
   public ResponseEntity<?> cadastroVenda(
     @RequestBody Venda vendas,
@@ -147,7 +154,7 @@ public class VendaControle {
       );
     }
   }
-
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')")
   @DeleteMapping("/deletar/{id}")
   public ResponseEntity<?> deletarVendas(@PathVariable Long id) {
     List<Empresa> empresas = servicoEmpresa.pegarTodas();

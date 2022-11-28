@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.autobots.automanager.componentes.VeiculoSelecionador;
 import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.entitades.Veiculo;
 import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.hateos.VeiculoHateos;
 import com.autobots.automanager.servicos.UsuarioServico;
 import com.autobots.automanager.servicos.VeiculoServico;
 import com.autobots.automanager.servicos.VendaServico;
@@ -38,11 +40,14 @@ public class VeiculoControle {
 	private UsuariosSelecionador usuarioSelecionador;
 	
 	@Autowired
+	private VeiculoHateos hateos;
+	
+	@Autowired
 	private UsuarioServico servicoUsuario;
 
 	@Autowired
 	private VendaServico servicoVenda;
-	
+	  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")	
 	@GetMapping("/veiculos")
 	public ResponseEntity<List<Veiculo>> pegarTodos(){
 		List<Veiculo> todos = veiculoServico.pegarTodos();
@@ -51,12 +56,13 @@ public class VeiculoControle {
 			status = HttpStatus.NOT_FOUND;
 			return new ResponseEntity<List<Veiculo>>(status);
 		}else {
+			hateos.adicionarLink(todos);
 			status = HttpStatus.FOUND;
 			ResponseEntity<List<Veiculo>> resposta = new ResponseEntity<List<Veiculo>>(todos, status);
 			return resposta;
 		}
 	}
-
+	  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/veiculos/{id}")
 	public ResponseEntity<Veiculo> pegarVeiculoEspecifico(@PathVariable Long id){
 		List<Veiculo> todasEmpresas = veiculoServico.pegarTodos();
@@ -64,10 +70,11 @@ public class VeiculoControle {
 		if(select == null) {
 			return new ResponseEntity<Veiculo>(HttpStatus.NOT_FOUND);
 		}else {
+			hateos.adicionarLink(select);
 			return new ResponseEntity<Veiculo>(select, HttpStatus.FOUND);
 		}
 	}
-	
+	  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")	
 	@PostMapping("/cadastro/{idUsuario}")
 	public ResponseEntity<?> cadastroVeiculo(@PathVariable Long idUsuario, @RequestBody Veiculo body){
 		List<Usuario> todos = servicoUsuario.pegarTodos();
@@ -81,7 +88,7 @@ public class VeiculoControle {
 			return new ResponseEntity<>("Usuario não encontrado", HttpStatus.NOT_FOUND);
 		}
 	}
-	
+	  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")	
 	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<?> atualizarVeiculo(@PathVariable Long id, @RequestBody Veiculo atualizador){
 		HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -98,7 +105,7 @@ public class VeiculoControle {
 		}
 	}
 	
-	
+	  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")	
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<?> deletarVeiculo(@PathVariable Long id){
 		List<Veiculo> veiculos = veiculoServico.pegarTodos();
