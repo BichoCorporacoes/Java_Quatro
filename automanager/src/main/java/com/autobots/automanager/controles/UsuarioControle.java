@@ -75,7 +75,7 @@ public class UsuarioControle {
       return resposta;
     }
   }
-  @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_GERENTE','ROLE_CLIENTE','ROLE_VENDEDOR')")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_GERENTE','ROLE_CLIENTE','ROLE_VENDEDOR', 'ROLE_TESTE')")
   @GetMapping("/usuarios/{id}")
   public ResponseEntity<?> pegarUsuarioEspecifico(@PathVariable Long id) {
     List<Usuario> todosUsuarios = usuarioServico.pegarTodos();
